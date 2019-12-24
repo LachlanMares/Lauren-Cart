@@ -22,6 +22,11 @@
 #define neutral_uS                  1400
 #define steps                       20
 
+#define START                       0
+#define REV                         1
+#define NTRL                        2
+#define FWD                         3     
+
 Servo esc;  
 
 boolean newMode = false;
@@ -89,7 +94,7 @@ void loop()
         
   switch(state)
   {
-    case 0:   
+    case START:   
       if(brakeOn)
       {
         state = reverse ? 1 : state;
@@ -98,7 +103,7 @@ void loop()
       } 
       break;
 
-    case 1:
+    case REV:
       if(reverse)
       {
         if(brakeOn)
@@ -130,7 +135,7 @@ void loop()
         }
       break;
         
-    case 2:     
+    case NTRL:     
       if(neutral)
       {
         current_uS = neutral_uS;    
@@ -142,7 +147,7 @@ void loop()
         }
       break;
 
-    case 3:     
+    case FWD:     
       if(forward)
       {
         if(brakeOn)
