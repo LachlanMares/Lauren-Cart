@@ -29,6 +29,7 @@
 
 Servo esc;  
 
+boolean firstStart = true;
 boolean newMode = false;
 boolean parameterSet = false;
 boolean paramsSwitch = false;
@@ -62,8 +63,10 @@ void loop()
 {
   paramsSwitch = !digitalRead(parameter_select);
   
-  if(paramsSwitch != parameterSet)
+  if(paramsSwitch != parameterSet || firstStart)
   {
+    firstStart = false;
+    
     if(paramsSwitch)
     {
       parameterSet = true;
